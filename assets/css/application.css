@@ -19,6 +19,25 @@ section {
   padding: 1rem;
   margin: 1em auto;
   width: 90%;
-  height: 10rem;
+  min-height: 10rem;
   border: 2px #bd5558 solid;
+}
+
+.hidden {
+  display: none;
+}
+
+.message {
+  text-align: center;
+  font-size: 2rem;
+}
+
+.greater {
+  color: lightcoral;
+  background-color: maroon;
+}
+
+.less {
+  color: green;
+  background-color: greenyellow;
 }
