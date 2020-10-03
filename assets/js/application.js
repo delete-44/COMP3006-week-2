@@ -23,4 +23,11 @@ $(window).on('load', () => {
 
     $('#numberMessageText').html(`Number is ${message} 10`)
   });
+
+  $('#findUnique').click(() => {
+    let entered = $('#uniqueNumbers').val()
+    let uniqueNumbers = new Set(entered.split(','))
+
+    $('#uniqueMessageText').html([...uniqueNumbers].join(', '))
+  });
 });
