@@ -13,6 +13,19 @@ $(window).on('load', () => {
     lecturer.appendRow();
     e.preventDefault();
   });
+
+  $('#student-form').on('submit', (e) => {
+    formElements = e.target.elements;
+
+    let student = new Student(
+      formElements.namedItem('name').value,
+      formElements.namedItem('email').value,
+      formElements.namedItem('studentNumber').value,
+    )
+
+    student.appendRow();
+    e.preventDefault();
+  });
 });
 
 function setGreeting() {
@@ -46,4 +59,17 @@ Lecturer.prototype.appendRow = function() {
   let officeNumberCell = `<td>${this.officeNumber}</td>`
 
   $('#lecturer-table').find('tbody').append(`<tr>${nameCell}${emailCell}${officeNumberCell}</tr>`)
+}
+
+function Student(name, email, studentNumber) {
+  Person.call(this, name, email)
+  this.studentNumber = studentNumber
+}
+
+Student.prototype.appendRow = function() {
+  let nameCell = `<td>${this.name}</td>`
+  let emailCell = `<td>${this.email}</td>`
+  let studentNumberCell = `<td>${this.studentNumber}</td>`
+
+  $('#student-table').find('tbody').append(`<tr>${nameCell}${emailCell}${studentNumberCell}</tr>`)
 }
