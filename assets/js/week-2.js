@@ -10,6 +10,7 @@ $(window).on('load', () => {
       formElements.namedItem('officeNumber').value,
     )
 
+    lecturer.appendRow();
     e.preventDefault();
   });
 });
@@ -40,4 +41,9 @@ function Lecturer(name, email, officeNumber) {
 }
 
 Lecturer.prototype.appendRow = function() {
+  let nameCell = `<td>${this.name}</td>`
+  let emailCell = `<td>${this.email}</td>`
+  let officeNumberCell = `<td>${this.officeNumber}</td>`
+
+  $('#lecturer-table').find('tbody').append(`<tr>${nameCell}${emailCell}${officeNumberCell}</tr>`)
 }
