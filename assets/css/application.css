@@ -51,3 +51,16 @@ section {
   color: green;
   background-color: greenyellow;
 }
+
+table {
+  width: 100%;
+}
+
+td {
+  padding: 1rem;
+}
+
+thead {
+  background-color: #bd5558;
+  color: #EBFCFB;
+}
