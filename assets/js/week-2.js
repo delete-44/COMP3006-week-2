@@ -1,3 +1,5 @@
+const EMAIL_REGEX = /[\w\d\.-]*@(students\.)?plymouth\.ac\.uk/g
+
 $(window).on('load', () => {
   setGreeting();
 
@@ -10,7 +12,9 @@ $(window).on('load', () => {
       formElements.namedItem('officeNumber').value,
     )
 
-    lecturer.appendRow();
+    if (lecturer.validateEmail()) {
+      lecturer.appendRow();
+    }
     e.preventDefault();
   });
 
@@ -23,7 +27,9 @@ $(window).on('load', () => {
       formElements.namedItem('studentNumber').value,
     )
 
-    student.appendRow();
+    if (student.validateEmail()) {
+      student.appendRow();
+    }
     e.preventDefault();
   });
 });
@@ -61,6 +67,19 @@ Lecturer.prototype.appendRow = function() {
   $('#lecturer-table').find('tbody').append(`<tr>${nameCell}${emailCell}${officeNumberCell}</tr>`)
 }
 
+Lecturer.prototype.validateEmail = function() {
+  let isValid = false;
+  let display = 'block'
+
+  if(this.email.match(EMAIL_REGEX)) {
+    isValid = true
+    display = 'none'
+  }
+
+  $('#lecturer-error-box').css('display', display)
+  return isValid;
+}
+
 function Student(name, email, studentNumber) {
   Person.call(this, name, email)
   this.studentNumber = studentNumber
@@ -72,4 +91,17 @@ Student.prototype.appendRow = function() {
   let studentNumberCell = `<td>${this.studentNumber}</td>`
 
   $('#student-table').find('tbody').append(`<tr>${nameCell}${emailCell}${studentNumberCell}</tr>`)
+}
+
+Student.prototype.validateEmail = function() {
+  let isValid = false;
+  let display = 'block'
+
+  if(this.email.match(EMAIL_REGEX)) {
+    isValid = true
+    display = 'none'
+  }
+
+  $('#student-error-box').css('display', display)
+  return isValid;
 }
